@@ -473,7 +473,8 @@ int64_t insert_sat2ip_service(const char *path, char *name)
             break;
         }
 
-        title[n] = '\0';
+        /* remove newline character */
+        title[strcspn(title, "\r\n")] = '\0';
 
         strftime(time_string, sizeof(time_string), "%FT%T\r\n", gmtime(&tt));
         strip_ext(name);
@@ -511,11 +512,11 @@ insert_file(const char *name, const char *path, const char *parentID, int object
 	char *objname;
 	media_types mtype = get_media_type(name);
 
-    if( is_assets_list(name) )
+	if( is_assets_list(name) )
     {
         objname = strdup(name);
         strcpy(base, VIDEO_LIVE_ID);
-        strcpy(class, "item.videoItem.videoBroadcast");
+        class = "item.videoItem.videoBroadcast";
         detailID = insert_sat2ip_service(path, name);
     }
 
