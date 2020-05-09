@@ -764,8 +764,8 @@ add_res(char *size, char *duration, char *bitrate, char *sampleFrequency,
             }
 
             strcatf(args->str, "protocolInfo=\"http-get:*:%s:%s\"&gt;"
-                    "http://%s:8080/stream/channelid/%s &lt;/res&gt;",
-                    mime, dlna_pn, lan_addr[args->iface].str, path);
+                    "http://%s:9981/stream/channel/%s&lt;/res&gt;",
+                    mime, dlna_pn, "192.168.0.9", path);
         } else {
 	strcatf(args->str, "protocolInfo=\"http-get:*:%s:%s\"&gt;"
 	                          "http://%s:%d/MediaItems/%s.%s"
